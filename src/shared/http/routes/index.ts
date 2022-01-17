@@ -8,5 +8,7 @@ const gunController = new GunsController();
 
 route.post("/register", gunController.create);
 route.get("/", gunController.index);
+route.get("/name/:name", gunController.GetByName);
+route.get("/id/:gunId", gunController.GetById);
 
 export default route;

@@ -9,8 +9,8 @@ import {
 
 @Entity("guns")
 class GunsEntity {
-    @PrimaryGeneratedColumn("increment")
-    id: number;
+    @PrimaryGeneratedColumn("uuid")
+    id: string;
 
     @Column()
     name: string;
