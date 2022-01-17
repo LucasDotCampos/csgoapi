@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 
 import CreateGunsService from "../services/CreateGunsService";
+import ListGunsService from "../services/ListGunsService";
 
 export default class GunsController {
     public async create(
@@ -41,5 +42,15 @@ export default class GunsController {
         } catch (err) {
             return response.status(409).json(err.message);
         }
+    }
+
+    public async index(
+        request: Request,
+        response: Response
+    ): Promise<Response> {
+        const listGunsServices = new ListGunsService();
+
+        const guns = await listGunsServices.execute();
+        return response.json(guns);
     }
 }
