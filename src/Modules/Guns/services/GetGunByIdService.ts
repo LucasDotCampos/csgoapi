@@ -14,7 +14,7 @@ interface IGetBySide {
 }
 
 class GetGunByIdService {
-    public async execute({ gunId }: IGunById): Promise<GunsEntity[]> {
+    public async execute({ gunId }: IGunById): Promise<GunsEntity> {
         const gunRepository = getCustomRepository(GunRepository);
 
         const gun = await gunRepository.findById(gunId);
