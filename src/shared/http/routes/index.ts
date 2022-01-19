@@ -10,5 +10,6 @@ route.post("/register", gunController.create);
 route.get("/", gunController.index);
 route.get("/name/:name", gunController.GetByName);
 route.get("/id/:gunId", gunController.GetById);
+route.put("/update/:gunId", gunController.update);
 
 export default route;

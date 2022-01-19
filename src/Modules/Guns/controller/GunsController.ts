@@ -4,6 +4,7 @@ import CreateGunsService from "../services/CreateGunsService";
 import GetGunByIdService from "../services/GetGunByIdService";
 import GunNameService from "../services/GunNameService";
 import ListGunsService from "../services/ListGunsService";
+import UpdateGunsService from "../services/UpdateGunsService";
 
 export default class GunsController {
     public async create(
@@ -85,6 +86,48 @@ export default class GunsController {
             return response.status(200).json(guns);
         } catch (err) {
             return response.json(err.message);
+        }
+    }
+
+    public async update(
+        request: Request,
+        response: Response
+    ): Promise<Response> {
+        try {
+            const { gunId } = request.params;
+            const {
+                name,
+                ammo,
+                killAward,
+                damage,
+                firerate,
+                recoilControl,
+                accurateRange,
+                armorPenetration,
+                type,
+                side,
+                price,
+            } = request.body;
+
+            const updateGunsService = new UpdateGunsService();
+
+            const gun = await updateGunsService.execute({
+                name,
+                ammo,
+                killAward,
+                damage,
+                firerate,
+                recoilControl,
+                accurateRange,
+                armorPenetration,
+                type,
+                side,
+                price,
+                gunId,
+            });
+            return response.json(gun);
+        } catch (err) {
+            return response.status(404).json(err);
         }
     }
 }
