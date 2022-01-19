@@ -82,6 +82,58 @@
                 }
             }
         },
+        "/side/{side}": {
+            "get": {
+                "summary": "You'll get guns by their game side",
+                "tags": ["Guns"],
+                "parameters": [
+                    {
+                        "name": "side",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Guns"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/type/{type}": {
+            "get": {
+                "summary": "You'll get guns by their type",
+                "tags": ["Guns"],
+                "parameters": [
+                    {
+                        "name": "type",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Guns"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
 
         "/update/{gunId}": {
             "put": {

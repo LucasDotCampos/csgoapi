@@ -73,6 +73,38 @@ export default class GunsController {
         }
     }
 
+    public async GetByType(
+        request: Request,
+        response: Response
+    ): Promise<Response> {
+        try {
+            const { type } = request.params;
+            const getGunByIdService = new GetGunByIdService();
+
+            const guns = await getGunByIdService.getByType({ type });
+
+            return response.status(200).json(guns);
+        } catch (err) {
+            return response.json(err.message);
+        }
+    }
+
+    public async GetBySide(
+        request: Request,
+        response: Response
+    ): Promise<Response> {
+        try {
+            const { side } = request.params;
+            const getGunByIdService = new GetGunByIdService();
+
+            const guns = await getGunByIdService.getBySide({ side });
+
+            return response.status(200).json(guns);
+        } catch (err) {
+            return response.json(err.message);
+        }
+    }
+
     public async GetById(
         request: Request,
         response: Response
