@@ -1,0 +1,184 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "CSGOGUNSAPI",
+        "description": "API MADE TO GET CS:GO GUNS' INFORMATION",
+        "contact": {
+            "email": "lucasdotcampos@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:5555/",
+            "description": "host server"
+        }
+    ],
+    "paths": {
+        "/register": {
+            "post": {
+                "summary": "Route to register a gun",
+                "tags": ["Guns"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Guns"
+                            },
+                            "examples": {
+                                "Guns": {
+                                    "value": {
+                                        "name": "Desert Eagle",
+                                        "ammo": "1/2",
+                                        "killAward": "01",
+                                        "damage": "01",
+                                        "firerate": "4",
+                                        "recoilControl": "23",
+                                        "accurateRange": "2M",
+                                        "armorPenetration": "2",
+                                        "type": "RIFLE",
+                                        "side": "COUNTER-TERRORISTS",
+                                        "price": "50"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "409": {
+                        "description": "Gun is already registered"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Guns"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/": {
+            "get": {
+                "summary": "You'll get a list of all the registered guns",
+                "tags": ["Guns"],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Guns"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        "/update/{gunId}": {
+            "put": {
+                "summary": "Route to update informations about a gun",
+                "tags": ["Guns"],
+                "parameters": [
+                    {
+                        "name": "gunId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "$ref": "#/components/schemas/Guns"
+                            },
+                            "examples": {
+                                "Guns": {
+                                    "value": {
+                                        "name": "Desert-Eagle",
+                                        "ammo": "7/35",
+                                        "killAward": "300(100%)",
+                                        "damage": "53",
+                                        "firerate": "4",
+                                        "recoilControl": "9",
+                                        "accurateRange": "27M",
+                                        "armorPenetration": "186",
+                                        "type": "PISTOL",
+                                        "side": "TERRORISTS & COUNTER-TERRORISTS",
+                                        "price": "700"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Guns"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+
+    "components": {
+        "schemas": {
+            "Guns": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "ammo": {
+                        "type": "string"
+                    },
+                    "killAward": {
+                        "type": "string"
+                    },
+                    "damage": {
+                        "type": "number"
+                    },
+                    "firerate": {
+                        "type": "number"
+                    },
+                    "recoilControl": {
+                        "type": "number"
+                    },
+                    "accurateRange": {
+                        "type": "string"
+                    },
+                    "armorPenetration": {
+                        "type": "number"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "side": {
+                        "type": "string"
+                    },
+                    "price": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
