@@ -6,7 +6,7 @@
     "scripts": {
         "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --files src/shared/http/server.ts",
         "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
-        "start": "node src/shared/http/server.js"
+        "start": "node build/shared/http/server.js"
     },
     "keywords": [],
     "author": "",

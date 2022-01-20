@@ -62,7 +62,7 @@ export default class GunsController {
         response: Response
     ): Promise<Response> {
         try {
-            const { name } = request.params;
+            const name = request.params.name.toUpperCase();
             const gunNameService = new GunNameService();
 
             const guns = await gunNameService.execute({ name });
@@ -78,7 +78,8 @@ export default class GunsController {
         response: Response
     ): Promise<Response> {
         try {
-            const { type } = request.params;
+            const type = request.params.type.toUpperCase();
+
             const getGunByIdService = new GetGunByIdService();
 
             const guns = await getGunByIdService.getByType({ type });
@@ -94,7 +95,7 @@ export default class GunsController {
         response: Response
     ): Promise<Response> {
         try {
-            const { side } = request.params;
+            const side = request.params.side.toUpperCase();
             const getGunByIdService = new GetGunByIdService();
 
             const guns = await getGunByIdService.getBySide({ side });

@@ -8,7 +8,7 @@ interface IUser {
 }
 
 class GunNameService {
-    public async execute({ name }: IUser): Promise<GunsEntity> {
+    public async execute({ name }: IUser): Promise<GunsEntity[]> {
         const gunRepository = getCustomRepository(GunRepository);
 
         const gun = await gunRepository.findByName(name);

@@ -1,13 +1,18 @@
-import { EntityRepository, Like, Repository } from "typeorm";
+import {
+    EntityRepository,
+    Like,
+    Repository,
+    CollectionDistinctOptions,
+} from "typeorm";
 
 import GunsEntity from "../entities/GunsEntity";
 
 @EntityRepository(GunsEntity)
 class GunsRepository extends Repository<GunsEntity> {
-    public async findByName(name: string): Promise<GunsEntity> {
-        const gun = await this.findOne({
+    public async findByName(name: string): Promise<GunsEntity[]> {
+        const gun = await this.find({
             where: {
-                name,
+                name: Like(`%${name}%`),
             },
         });
 
@@ -19,6 +24,10 @@ class GunsRepository extends Repository<GunsEntity> {
             where: {
                 id: gunId,
             },
+            order: {
+                type: "ASC",
+                id: "DESC",
+            },
         });
 
         return gun;
@@ -27,17 +36,7 @@ class GunsRepository extends Repository<GunsEntity> {
     public async findByType(type: string): Promise<GunsEntity[] | undefined> {
         const gun = await this.find({
             where: {
-                type: type,
-            },
-        });
-
-        return gun;
-    }
-
-    public async findBySide(side: string): Promise<GunsEntity[] | undefined> {
-        const gun = await this.find({
-            where: {
-                side: side,
+                type: Like(`%${type}%`),
             },
             order: {
                 name: "ASC",
@@ -48,9 +47,15 @@ class GunsRepository extends Repository<GunsEntity> {
         return gun;
     }
 
-    public async findByLetter(any: string): Promise<GunsEntity[] | undefined> {
+    public async findBySide(side: string): Promise<GunsEntity[] | undefined> {
         const gun = await this.find({
-            name: Like(`%${any}%`),
+            where: {
+                side: Like(`%${side}%`),
+            },
+            order: {
+                type: "ASC",
+                id: "DESC",
+            },
         });
 
         return gun;
