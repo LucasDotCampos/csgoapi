@@ -140,6 +140,7 @@ export default class GunsController {
                 type,
                 side,
                 price,
+                picture,
             } = request.body;
 
             const updateGunsService = new UpdateGunsService();
@@ -157,6 +158,7 @@ export default class GunsController {
                 side,
                 price,
                 gunId,
+                picture,
             });
             return response.json(gun);
         } catch (err) {

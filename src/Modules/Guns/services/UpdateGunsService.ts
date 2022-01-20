@@ -16,6 +16,7 @@ interface IRequest {
     side: string;
     price: string;
     gunId: string;
+    picture: string;
 }
 
 class UpdateGunsService {
@@ -32,6 +33,7 @@ class UpdateGunsService {
         side,
         price,
         gunId,
+        picture,
     }: IRequest): Promise<GunsEntity> {
         const gunRepository = getCustomRepository(GunsRepository);
         const gun = await gunRepository.findById(gunId);
@@ -57,6 +59,7 @@ class UpdateGunsService {
         gun.type = type;
         gun.recoilControl = recoilControl;
         gun.price = price;
+        gun.picture = picture;
 
         await gunRepository.save(gun);
         return gun;

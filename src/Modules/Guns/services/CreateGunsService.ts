@@ -32,7 +32,7 @@ class CreateGunsService {
         price,
     }: IGuns): Promise<GunsEntity> {
         const gunsRepository = getCustomRepository(GunsRepository);
-        const nameExists = await gunsRepository.findByName(name);
+        const nameExists = await gunsRepository.findBySpecificName(name);
 
         if (nameExists) {
             throw new Error("The gun is registered already");

@@ -1,11 +1,5 @@
-import {
-    EntityRepository,
-    Like,
-    Repository,
-    CollectionDistinctOptions,
-} from "typeorm";
-
 import GunsEntity from "../entities/GunsEntity";
+import { CollectionDistinctOptions, EntityRepository, Like, Repository } from "typeorm";
 
 @EntityRepository(GunsEntity)
 class GunsRepository extends Repository<GunsEntity> {

@@ -45,6 +45,9 @@ class GunsEntity {
     @Column()
     price: string;
 
+    @Column()
+    picture?: string;
+
     @CreateDateColumn()
     created_at: Timestamp;
 
