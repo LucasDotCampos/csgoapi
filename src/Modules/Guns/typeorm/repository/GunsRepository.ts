@@ -18,6 +18,15 @@ class GunsRepository extends Repository<GunsEntity> {
 
         return gun;
     }
+    public async findBySpecificName(name: string): Promise<GunsEntity> {
+        const gun = await this.findOne({
+            where: {
+                name,
+            },
+        });
+
+        return gun;
+    }
 
     public async findById(gunId: string): Promise<GunsEntity | undefined> {
         const gun = await this.findOne({

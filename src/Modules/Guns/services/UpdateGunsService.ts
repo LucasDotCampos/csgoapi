@@ -40,7 +40,7 @@ class UpdateGunsService {
             throw new Error("Gun not found.");
         }
 
-        const gunUpdateName = await gunRepository.findByName(name);
+        const gunUpdateName = await gunRepository.findBySpecificName(name);
 
         if (gunUpdateName && gunUpdateName.name !== name) {
             throw new Error("This gun is already registered");
